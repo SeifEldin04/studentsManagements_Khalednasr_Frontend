@@ -222,277 +222,283 @@ const StudentsDegrees = () => {
         </section>
 
             :
-
             <section className='sm:p-4'>
                 <Title title='Students Degrees' />
 
-                {/* search , reset search button*/}
-                <div className="search w-full">
-                    {/* Search Inputs */}
-                    <div className="">
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <Input type="text" className='bg-white' placeholder='بحث عبر الاسم'
-                                    onChange={handleSearch(setSearchName)}
-                                    value={searchName}
-                                />
-                            </div>
+                {students.length > 0 ?
+                    <>
+                        {/* search , reset search button*/}
+                        <div className="search w-full">
+                            {/* Search Inputs */}
+                            <div className="">
+                                <div className="flex gap-4">
+                                    <div className="w-1/2">
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر الاسم'
+                                            onChange={handleSearch(setSearchName)}
+                                            value={searchName}
+                                        />
+                                    </div>
 
-                            <div className="w-1/2">
-                                <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
+                                    <div className="w-1/2">
+                                        <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
                         "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
                         "placeholder-gray-400",
                         "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
-                                    onChange={handleSearch(setSearchGrade)}
-                                    value={searchGrade}>
+                                            onChange={handleSearch(setSearchGrade)}
+                                            value={searchGrade}>
 
-                                    <option value=""> أختر الصف الدراسي</option>
+                                            <option value=""> أختر الصف الدراسي</option>
 
-                                    <option value="الصف الاول الثانوي"> الصف الاول الثانوي </option>
+                                            <option value="الصف الاول الثانوي"> الصف الاول الثانوي </option>
 
-                                    <option value="الصف الثاني الثانوي"> الصف الثاني الثانوي </option>
+                                            <option value="الصف الثاني الثانوي"> الصف الثاني الثانوي </option>
 
-                                    <option value="الصف الثاني الثانوي علمي"> الصف الثاني الثانوي علمي</option>
+                                            <option value="الصف الثاني الثانوي علمي"> الصف الثاني الثانوي علمي</option>
 
-                                    <option value="الصف الثالث الثانوي"> الصف الثالث الثانوي</option>
+                                            <option value="الصف الثالث الثانوي"> الصف الثالث الثانوي</option>
 
-                                    <option value="احصاء"> احصاء </option>
-                                </select>
-                            </div>
-                        </div>
+                                            <option value="احصاء"> احصاء </option>
+                                        </select>
+                                    </div>
+                                </div>
 
-                        <div className='flex gap-4'>
-                            <div className='w-1/2'>
-                                <Input type="text" className='bg-white' placeholder='بحث عبر المدرسة'
-                                    onChange={(e) => setSearchSchool(e.target.value)}
-                                    value={searchSchool}
-                                />
-                            </div>
+                                <div className='flex gap-4'>
+                                    <div className='w-1/2'>
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر المدرسة'
+                                            onChange={(e) => setSearchSchool(e.target.value)}
+                                            value={searchSchool}
+                                        />
+                                    </div>
 
-                            <div className='w-1/2'>
-                                <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
+                                    <div className='w-1/2'>
+                                        <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
                         "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
                         "placeholder-gray-400",
                         "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
-                                    onChange={handleSearch(setSearchCenter)}
-                                    value={searchCenter}>
+                                            onChange={handleSearch(setSearchCenter)}
+                                            value={searchCenter}>
 
-                                    <option value="">
-                                        اختر السنتر
-                                    </option>
+                                            <option value="">
+                                                اختر السنتر
+                                            </option>
 
-                                    {centers.map((center => (
-                                        <option key={center.id} value={center.name}>
-                                            {center.name}
-                                        </option>
-                                    )))}
-                                </select>
+                                            {centers.map((center => (
+                                                <option key={center.id} value={center.name}>
+                                                    {center.name}
+                                                </option>
+                                            )))}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="flex gap-4">
+                                    <div className="w-1/2">
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر تليفون الطالب'
+                                            onChange={(e) => setSearchPhone(e.target.value)}
+                                            value={searchPhone}
+                                        />
+                                    </div>
+
+                                    <div className="w-1/2">
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر تليفون ولي الامر'
+                                            onChange={(e) => setSearchGuardianPhone(e.target.value)}
+                                            value={searchGuardianPhone}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* delete search button */}
+                            <div className='flex justify-center items-center my-4'>
+                                <Button className='sm:w-1/4 w-3/4' onClick={clearSearch}> مسح البحث </Button>
                             </div>
                         </div>
 
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <Input type="text" className='bg-white' placeholder='بحث عبر تليفون الطالب'
-                                    onChange={(e) => setSearchPhone(e.target.value)}
-                                    value={searchPhone}
-                                />
+                        {/* utilities */}
+                        <div className='utilities'>
+                            <div className="flex justify-center items-center my-4">
+                                <div className={`mb-2 ${students.length > 1 ? 'flex gap-3' : 'hidden'}`}>
+                                    <button
+                                        className={`py-2 px-4 rounded text-white font-semibold ${sortType === 'name' ? 'bg-green-600' : 'bg-gray-500'}`}
+                                        onClick={() => toggleSortType('name')}
+                                    >
+                                        ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
+                                    </button>
+                                    <button
+                                        className={`py-2 px-4 rounded text-white font-semibold ${sortType === 'percentage' ? 'bg-green-600' : 'bg-gray-500'}`}
+                                        onClick={() => toggleSortType('percentage')}
+                                    >
+                                        ترتيب أبجدي حسب النسبة المئوية {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
+                                    </button>
+                                </div>
                             </div>
 
-                            <div className="w-1/2">
-                                <Input type="text" className='bg-white' placeholder='بحث عبر تليفون ولي الامر'
-                                    onChange={(e) => setSearchGuardianPhone(e.target.value)}
-                                    value={searchGuardianPhone}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* delete search button */}
-                    <div className='flex justify-center items-center my-4'>
-                        <Button className='sm:w-1/4 w-3/4' onClick={clearSearch}> مسح البحث </Button>
-                    </div>
-                </div>
-
-                {/* utilities */}
-                <div className='utilities'>
-
-                    <div className="flex justify-center items-center my-4">
-                        <div className={`mb-2 ${students.length > 1 ? 'flex gap-3' : 'hidden'}`}>
-                            <button
-                                className={`py-2 px-4 rounded text-white font-semibold ${sortType === 'name' ? 'bg-green-600' : 'bg-gray-500'}`}
-                                onClick={() => toggleSortType('name')}
-                            >
-                                 ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
-                            </button>
-                            <button
-                                className={`py-2 px-4 rounded text-white font-semibold ${sortType === 'percentage' ? 'bg-green-600' : 'bg-gray-500'}`}
-                                onClick={() => toggleSortType('percentage')}
-                            >
-                                ترتيب أبجدي حسب النسبة المئوية {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="container mx-auto text-center flex justify-center items-center">
-                        <div>
-                            {isSearchActive ? (
-                                <span className="bg-black text-white rounded-md py-2 px-3">
-                                    عدد الطلاب المبحوث عنها : {students.length}
-                                </span>
-                            ) : (
-                                <span className="bg-black text-white rounded-full py-2 px-3">
-                                    عدد الطلاب الكلي : {allStudents.length}
-                                </span>
-                            )}
-                        </div>
-
-                        {selectedRows.length === 0 && (
-                            <button
-                                className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-3"
-                                onClick={handleSelectAll}
-                            >
-                                تحديد الكل
-                            </button>
-                        )}
-
-                        {selectedRows.length > 0 && (
-                            <>
-                                <button
-                                    className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-3"
-                                    onClick={handleSelectAll}
-                                >
-                                    تحديد الكل
-                                </button>
-
-                                <button
-                                    className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded ml-3"
-                                    onClick={handleDeselectAll}
-                                >
-                                    إلغاء التحديد
-                                </button>
-                            </>
-                        )}
-                    </div>
-
-                </div>
-
-                {/* قائمة الطلاب */}
-                <div className="w-[420px] mt-10 sm:flex justify-center items-center sm:w-full overflow-x-auto h-full">
-                    <table className="border-separate border-spacing-0 min-w-max sm:text-lg rounded-lg text-center">
-                        <thead>
-                            <tr>
-                                <th className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10">Select</th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    ID
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 left-0 z-20'
-                                >
-                                    اسم الطالب
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    الصف الدراسي
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    المدرسة
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 z-10'
-                                >
-                                    السنتر
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    تليفون الطالب
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    تليفون ولي امر الطالب
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    مجموع الدرجات
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    القيمة العظمي
-                                </th>
-
-                                <th
-                                    className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
-                                >
-                                    النسبة المئوية %
-                                </th>
-
-                                {showRanking && <td className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'>الترتيب</td>}
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {students.map((student, rowIdx) => (
-                                <tr
-                                    key={student.id}
-                                    className={`${selectedRows.includes(student.id) ? 'bg-gray-400' : ''}`}
-                                >
-                                    <td className="border border-gray-800 dark:bg-white">
-                                        <div className="flex justify-center">
-                                            <div
-                                                className={`w-4 h-4 border-2 rounded-full cursor-pointer ${selectedRows.includes(student.id) ? 'bg-primary' : ''}`}
-                                                onClick={(e) => handleSelectRow(e, student.id)}
-                                            ></div>
-                                        </div>
-                                    </td>
-
-                                    <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold"> {student.id} </td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold sticky left-0 bg-gray-100 z-20">
-                                        {student.name}
-                                    </td>
-                                    <td className='min-w-[80px] p-2 border border-gray-800 dark:bg-white' onClick={() => toggleStudentExamScores(student.id)}>
-                                        {student.grade === 'grade1' && 'الصف الاول الثانوي'}
-                                        {student.grade === 'grade2' && 'الصف الثاني الثانوي'}
-                                        {student.grade === 'grade2_specialization_science' && 'الصف الثاني الثانوي علمي'}
-                                        {student.grade === 'grade3' && 'الصف الثالث الثانوي'}
-                                        {student.grade === 'statistics' && 'احصاء'}
-                                    </td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.school}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.center_name}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.phone_number}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.guardian_phone_number}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.total_score}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.total_max_score}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.percentage} %</td>
-
-                                    {showRanking && (
-                                        <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.ranking <= 10 ? student.ranking : ''}</td>
+                            <div className="container mx-auto text-center flex justify-center items-center">
+                                <div>
+                                    {isSearchActive ? (
+                                        <span className="bg-black text-white rounded-md py-2 px-3">
+                                            عدد الطلاب المبحوث عنها : {students.length}
+                                        </span>
+                                    ) : (
+                                        <span className="bg-black text-white rounded-full py-2 px-3">
+                                            عدد الطلاب الكلي : {allStudents.length}
+                                        </span>
                                     )}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                                </div>
 
-                <div className="flex justify-center gap-4 mt-6">
-                    <button onClick={exportToExcel} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">تصدير إلى Excel</button>
-                </div>
+                                {selectedRows.length === 0 && (
+                                    <button
+                                        className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-3"
+                                        onClick={handleSelectAll}
+                                    >
+                                        تحديد الكل
+                                    </button>
+                                )}
+
+                                {selectedRows.length > 0 && (
+                                    <>
+                                        <button
+                                            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-3"
+                                            onClick={handleSelectAll}
+                                        >
+                                            تحديد الكل
+                                        </button>
+
+                                        <button
+                                            className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded ml-3"
+                                            onClick={handleDeselectAll}
+                                        >
+                                            إلغاء التحديد
+                                        </button>
+                                    </>
+                                )}
+                            </div>
+
+                        </div>
+
+                        {/* قائمة الطلاب */}
+                        <div className="w-[420px] mt-10 sm:flex justify-center items-center sm:w-full overflow-x-auto h-full">
+                            <table className="border-separate border-spacing-0 min-w-max sm:text-lg rounded-lg text-center">
+                                <thead>
+                                    <tr>
+                                        <th className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10">Select</th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            ID
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 left-0 z-20'
+                                        >
+                                            اسم الطالب
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            الصف الدراسي
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            المدرسة
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            السنتر
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            تليفون الطالب
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            تليفون ولي امر الطالب
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            مجموع الدرجات
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            القيمة العظمي
+                                        </th>
+
+                                        <th
+                                            className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'
+                                        >
+                                            النسبة المئوية %
+                                        </th>
+
+                                        {showRanking && <td className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'>الترتيب</td>}
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {students.map((student, rowIdx) => (
+                                        <tr
+                                            key={student.id}
+                                            className={`${selectedRows.includes(student.id) ? 'bg-gray-400' : ''}`}
+                                        >
+                                            <td className="border border-gray-800 dark:bg-white">
+                                                <div className="flex justify-center">
+                                                    <div
+                                                        className={`w-4 h-4 border-2 rounded-full cursor-pointer ${selectedRows.includes(student.id) ? 'bg-primary' : ''}`}
+                                                        onClick={(e) => handleSelectRow(e, student.id)}
+                                                    ></div>
+                                                </div>
+                                            </td>
+
+                                            <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold"> {student.id} </td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold sticky left-0 bg-gray-100 z-20">
+                                                {student.name}
+                                            </td>
+                                            <td className='min-w-[80px] p-2 border border-gray-800 dark:bg-white' onClick={() => toggleStudentExamScores(student.id)}>
+                                                {student.grade === 'grade1' && 'الصف الاول الثانوي'}
+                                                {student.grade === 'grade2' && 'الصف الثاني الثانوي'}
+                                                {student.grade === 'grade2_specialization_science' && 'الصف الثاني الثانوي علمي'}
+                                                {student.grade === 'grade3' && 'الصف الثالث الثانوي'}
+                                                {student.grade === 'statistics' && 'احصاء'}
+                                            </td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.school}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.center_name}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.phone_number}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.guardian_phone_number}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.total_score}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.total_max_score}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.percentage} %</td>
+
+                                            {showRanking && (
+                                                <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.ranking <= 10 ? student.ranking : ''}</td>
+                                            )}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div className="flex justify-center gap-4 mt-6">
+                            <button onClick={exportToExcel} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">تصدير إلى Excel</button>
+                        </div>
+
+                    </>
+
+                    :
+
+                    <p className="text-red-500 text-center my-3 text-xl"> لا يوجد طلاب متاحين </p>}
             </section>
         }
 

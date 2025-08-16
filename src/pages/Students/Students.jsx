@@ -522,185 +522,196 @@ const Students = () => {
                     </Button>
                 </div>
 
-                {/* search , reset search button*/}
-                <div className="search w-full">
-                    {/* Search Inputs */}
-                    <div className="">
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <Input type="text" className='bg-white' placeholder='بحث عبر الاسم'
-                                    onChange={handleSearch(setSearchName)}
-                                    value={searchName}
-                                />
-                            </div>
-
-                            <div className="w-1/2">
-                                <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
-                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
-                        "placeholder-gray-400",
-                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
-                                    onChange={handleSearch(setSearchGrade)}
-                                    value={searchGrade}>
-
-                                    <option value=""> أختر الصف الدراسي</option>
-
-                                    <option value="الصف الاول الثانوي"> الصف الاول الثانوي </option>
-
-                                    <option value="الصف الثاني الثانوي"> الصف الثاني الثانوي </option>
-
-                                    <option value="الصف الثاني الثانوي علمي"> الصف الثاني الثانوي علمي</option>
-
-                                    <option value="الصف الثالث الثانوي"> الصف الثالث الثانوي</option>
-
-                                    <option value="احصاء"> احصاء </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className='flex gap-4'>
-                            <div className='w-1/2'>
-                                <Input type="text" className='bg-white' placeholder='بحث عبر المدرسة'
-                                    onChange={(e) => setSearchSchool(e.target.value)}
-                                    value={searchSchool}
-                                />
-                            </div>
-
-                            <div className='w-1/2'>
-                                <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
-                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
-                        "placeholder-gray-400",
-                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
-                                    onChange={handleSearch(setSearchCenter)}
-                                    value={searchCenter}>
-
-                                    <option value="">
-                                        اختر السنتر
-                                    </option>
-
-                                    {centers.map((center => (
-                                        <option key={center.id} value={center.name}>
-                                            {center.name}
-                                        </option>
-                                    )))}
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="flex gap-4">
-                            <div className="w-1/2">
-                                <Input type="text" className='bg-white' placeholder='بحث عبر تليفون الطالب'
-                                    onChange={(e) => setSearchPhone(e.target.value)}
-                                    value={searchPhone}
-                                />
-                            </div>
-
-                            <div className="w-1/2">
-                                <Input type="text" className='bg-white' placeholder='بحث عبر تليفون ولي الامر'
-                                    onChange={(e) => setSearchGuardianPhone(e.target.value)}
-                                    value={searchGuardianPhone}
-                                />
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* delete search button */}
-                    <div className='flex justify-center items-center my-4'>
-                        <Button className='sm:w-1/4 w-3/4' onClick={clearSearch}> مسح البحث </Button>
-                    </div>
-                </div>
 
                 {/* utilities */}
-                <div className='utilities'>
-                    <div className='my-3 w-full flex justify-center items-center'>
-                        <Button className='sm:w-1/4 w-3/4' onClick={handleSelectAll}>   تحديد الكل </Button>
-                    </div>
+                {students.length > 0 ?
 
-                    <div className={`sortBtn w-full flex justify-center items-center`}>
-                        <Button className='btn btn-success m-auto sm:w-1/4 w-3/4' onClick={sortStudentsAlphabetically}>
-                            ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
-                        </Button>
-                    </div>
+                    <>
 
-                    {selectedRows.length > 0 && <div className="my-4 sm:w-1/2 w-3/4 py-4 m-auto bg-white dark:bg-gray-900 rounded-lg shadow-md">
-                        <div className='w-full flex justify-center items-center'>
-                            <Button className='bg-red-600 hover:bg-red-700' onClick={handleDeselectAll}> الغاء التحديد </Button>
+                        {/* search , reset search button*/}
+                        <div className="search w-full">
+                            {/* Search Inputs */}
+                            <div className="">
+                                <div className="flex gap-4">
+                                    <div className="w-1/2">
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر الاسم'
+                                            onChange={handleSearch(setSearchName)}
+                                            value={searchName}
+                                        />
+                                    </div>
+
+                                    <div className="w-1/2">
+                                        <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
+                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
+                        "placeholder-gray-400",
+                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
+                                            onChange={handleSearch(setSearchGrade)}
+                                            value={searchGrade}>
+
+                                            <option value=""> أختر الصف الدراسي</option>
+
+                                            <option value="الصف الاول الثانوي"> الصف الاول الثانوي </option>
+
+                                            <option value="الصف الثاني الثانوي"> الصف الثاني الثانوي </option>
+
+                                            <option value="الصف الثاني الثانوي علمي"> الصف الثاني الثانوي علمي</option>
+
+                                            <option value="الصف الثالث الثانوي"> الصف الثالث الثانوي</option>
+
+                                            <option value="احصاء"> احصاء </option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className='flex gap-4'>
+                                    <div className='w-1/2'>
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر المدرسة'
+                                            onChange={(e) => setSearchSchool(e.target.value)}
+                                            value={searchSchool}
+                                        />
+                                    </div>
+
+                                    <div className='w-1/2'>
+                                        <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
+                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
+                        "placeholder-gray-400",
+                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
+                                            onChange={handleSearch(setSearchCenter)}
+                                            value={searchCenter}>
+
+                                            <option value="">
+                                                اختر السنتر
+                                            </option>
+
+                                            {centers.map((center => (
+                                                <option key={center.id} value={center.name}>
+                                                    {center.name}
+                                                </option>
+                                            )))}
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div className="flex gap-4">
+                                    <div className="w-1/2">
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر تليفون الطالب'
+                                            onChange={(e) => setSearchPhone(e.target.value)}
+                                            value={searchPhone}
+                                        />
+                                    </div>
+
+                                    <div className="w-1/2">
+                                        <Input type="text" className='bg-white' placeholder='بحث عبر تليفون ولي الامر'
+                                            onChange={(e) => setSearchGuardianPhone(e.target.value)}
+                                            value={searchGuardianPhone}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* delete search button */}
+                            <div className='flex justify-center items-center my-4'>
+                                <Button className='sm:w-1/4 w-3/4' onClick={clearSearch}> مسح البحث </Button>
+                            </div>
                         </div>
 
-                        <div className='mt-3 w-full flex justify-center items-center'>
-                            <Button className='bg-red-600 hover:bg-red-700' onClick={handleDeleteSelected}> حذف الطلاب المحددين </Button>
+                        {/* utilities */}
+                        <div className='utilities'>
+                            <div className='my-3 w-full flex justify-center items-center'>
+                                <Button className='sm:w-1/4 w-3/4' onClick={handleSelectAll}>   تحديد الكل </Button>
+                            </div>
+
+                            <div className={`sortBtn w-full flex justify-center items-center`}>
+                                <Button className='btn btn-success m-auto sm:w-1/4 w-3/4' onClick={sortStudentsAlphabetically}>
+                                    ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
+                                </Button>
+                            </div>
+
+                            {selectedRows.length > 0 && <div className="my-4 sm:w-1/2 w-3/4 py-4 m-auto bg-white dark:bg-gray-900 rounded-lg shadow-md">
+                                <div className='w-full flex justify-center items-center'>
+                                    <Button className='bg-red-600 hover:bg-red-700' onClick={handleDeselectAll}> الغاء التحديد </Button>
+                                </div>
+
+                                <div className='mt-3 w-full flex justify-center items-center'>
+                                    <Button className='bg-red-600 hover:bg-red-700' onClick={handleDeleteSelected}> حذف الطلاب المحددين </Button>
+                                </div>
+                            </div>
+                            }
                         </div>
-                    </div>
-                    }
-                </div>
 
-                {/* قائمة الطلاب */}
-                <div className="w-[420px] mt-10 sm:flex justify-center items-center sm:w-full overflow-x-auto h-full">
-                    <table className="border-separate border-spacing-0 min-w-max sm:text-lg rounded-lg text-center">
-                        <thead>
-                            <tr>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> Select </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> ID </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 left-0 z-20'> اسم الطالب </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> الصف الدراسي </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> المدرسة </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 z-10'> السنتر </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> المنطقة </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> تليفون الطالب </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> تليفون ولي امر الطالب </th>
-                                <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> عمليات </th>
-                            </tr>
-                        </thead>
+                        {/* قائمة الطلاب */}
+                        <div className="w-[420px] mt-10 sm:flex justify-center items-center sm:w-full overflow-x-auto h-full">
+                            <table className="border-separate border-spacing-0 min-w-max sm:text-lg rounded-lg text-center">
+                                <thead>
+                                    <tr>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> Select </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> ID </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 left-0 z-20'> اسم الطالب </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> الصف الدراسي </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> المدرسة </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800  bg-primary text-white sticky top-0 z-10'> السنتر </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> المنطقة </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> تليفون الطالب </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> تليفون ولي امر الطالب </th>
+                                        <th className='min-w-[80px] p-2 border border-gray-800 bg-primary text-white sticky top-0 z-10'> عمليات </th>
+                                    </tr>
+                                </thead>
 
-                        <tbody>
-                            {students.map((student, rowIdx) => (
-                                <tr key={rowIdx} className={`${selectedRows.includes(student.id) ? 'bg-gray-400' : ''}`}>
-                                    <td
-                                        className="min-w-[80px] p-2 border border-gray-800 dark:bg-white text-white font-bold cursor-pointer"
-                                        onClick={(e) => handleSelectRow(e, student.id)}
-                                    >
-                                        <div className="d-flex justify-content-center">
-                                            <div
-                                                className={`select ${selectedRows.includes(student.id) ? 'selected' : ''}`}
-                                            ></div>
-                                        </div>
-                                    </td>
+                                <tbody>
+                                    {students.map((student, rowIdx) => (
+                                        <tr key={rowIdx} className={`${selectedRows.includes(student.id) ? 'bg-gray-400' : ''}`}>
+                                            <td
+                                                className="min-w-[80px] p-2 border border-gray-800 dark:bg-white text-white font-bold cursor-pointer"
+                                                onClick={(e) => handleSelectRow(e, student.id)}
+                                            >
+                                                <div className="d-flex justify-content-center">
+                                                    <div
+                                                        className={`select ${selectedRows.includes(student.id) ? 'selected' : ''}`}
+                                                    ></div>
+                                                </div>
+                                            </td>
 
-                                    <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold"> {student.id} </td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold sticky left-0 bg-gray-100 z-20">
-                                        {student.name}
-                                    </td>
-                                    <td className='min-w-[80px] p-2 border border-gray-800 dark:bg-white' onClick={() => toggleStudentExamScores(student.id)}>
-                                        {student.grade === 'grade1' && 'الصف الاول الثانوي'}
-                                        {student.grade === 'grade2' && 'الصف الثاني الثانوي'}
-                                        {student.grade === 'grade2_specialization_science' && 'الصف الثاني الثانوي علمي'}
-                                        {student.grade === 'grade3' && 'الصف الثالث الثانوي'}
-                                        {student.grade === 'statistics' && 'احصاء'}
-                                    </td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.school}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.center_name}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.address}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.phone_number}</td>
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.guardian_phone_number}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold"> {student.id} </td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 bg-primary text-white font-bold sticky left-0 bg-gray-100 z-20">
+                                                {student.name}
+                                            </td>
+                                            <td className='min-w-[80px] p-2 border border-gray-800 dark:bg-white' onClick={() => toggleStudentExamScores(student.id)}>
+                                                {student.grade === 'grade1' && 'الصف الاول الثانوي'}
+                                                {student.grade === 'grade2' && 'الصف الثاني الثانوي'}
+                                                {student.grade === 'grade2_specialization_science' && 'الصف الثاني الثانوي علمي'}
+                                                {student.grade === 'grade3' && 'الصف الثالث الثانوي'}
+                                                {student.grade === 'statistics' && 'احصاء'}
+                                            </td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.school}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.center_name}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.address}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.phone_number}</td>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">{student.guardian_phone_number}</td>
 
-                                    <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">
-                                        <button
-                                            className="bg-transparent text-yellow-400 hover:text-yellow-500 text-sm mr-2"
-                                            onClick={() => handleStudentEditClick(student)}
-                                        >
-                                            <MdEdit className="inline-block mr-1 text-2xl" />
-                                        </button>
-                                        <button
-                                            className="text-red-600 hover:text-red-700 text-sm"
-                                            onClick={() => deleteStudent(student.id)}
-                                        >
-                                            <MdDelete className="inline-block mr-1 text-2xl" />
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                                            <td className="min-w-[80px] p-2 border border-gray-800 dark:bg-white">
+                                                <button
+                                                    className="bg-transparent text-yellow-400 hover:text-yellow-500 text-sm mr-2"
+                                                    onClick={() => handleStudentEditClick(student)}
+                                                >
+                                                    <MdEdit className="inline-block mr-1 text-2xl" />
+                                                </button>
+                                                <button
+                                                    className="text-red-600 hover:text-red-700 text-sm"
+                                                    onClick={() => deleteStudent(student.id)}
+                                                >
+                                                    <MdDelete className="inline-block mr-1 text-2xl" />
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
+
+                    :
+
+                    <p className="text-red-500 text-center my-3 text-xl"> لا يوجد طلاب متاحين </p>}
             </section>
         }
 

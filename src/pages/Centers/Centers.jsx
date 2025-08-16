@@ -1,293 +1,3 @@
-
-// import React, { useEffect, useState } from 'react'
-// import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-// import { PiPlusCircleBold } from "react-icons/pi";
-// import Title from '../../Components/title';
-// import { Button } from '../../Components/Ui/Button';
-// import Input from '../../Components/Ui/Input';
-// import { IoClose } from "react-icons/io5";
-// import api from '../../libs/apiCall';
-
-
-// // تعريف مستويات الصفوف (grades)
-// const gradeLevels = [
-//   'الصف الاول الثانوي',
-//   'الصف الثاني الثانوي',
-//   'الصف الثاني الثانوي علمي',
-//   'الصف الثالث الثانوي',
-//   'احصاء'
-// ];
-
-// // دالة مساعدة لتحويل اسم الصف إلى مفتاح الحقل في السنتر
-// const getGradeField = (grade) => {
-//   switch (grade) {
-//     case 'الصف الاول الثانوي':
-//       return 'grade1';
-//     case 'الصف الثاني الثانوي':
-//       return 'grade2';
-//     case 'الصف الثاني الثانوي علمي':
-//       return 'grade2_specialization_science';
-//     case 'الصف الثالث الثانوي':
-//       return 'grade3';
-//     case 'احصاء':
-//       return 'statistics';
-//     default:
-//       return '';
-//   }
-// };
-
-
-// const Centers = () => {
-//     const [centers, setCenters] = useState([]);
-
-//     const [showModalAddCenter, setShowModalAddCenter] = useState(false)
-//     const [showModalAddSchedule, setShowModalAddSchedule] = useState(false)
-
-//     const [isLoading, setIsLoading] = useState(false)
-
-//     const userToken = localStorage.getItem('khalednasrSiteToken');
-
-
-//     const getCenters = async () => {
-//         try {
-//             setIsLoading(true);
-//             const { data } = await api.get('/centers' , {
-//                 headers: {
-//                     authorization: `Bearer ${localStorage.getItem('khalednasrSiteToken')}`
-//                 }
-//             });
-//             setCenters(data.data.centers || []);
-//             console.log(data?.data.centers);
-//         } catch (error) {
-//             console.error('Error fetching centers:', error);
-//         } finally {
-//             setIsLoading(false);
-//         }
-//     }
-
-//     useEffect(() => {
-//         getCenters();
-//     }, [])
-
-//     const toggleShowModalAddCenter = () => {
-//         setShowModalAddCenter(!showModalAddCenter)
-//     }
-
-//     const addCenter = async (center) => {
-//         try{
-//         setIsLoading(true);
-
-
-//     }catch(err){
-
-//     }finally{
-//         setIsLoading(false);
-//     }
-//     }
-
-
-//     const toggleShowModalAddSchedule = () => {
-//         setShowModalAddSchedule(!showModalAddSchedule)
-//     }
-
-
-//     return (
-//         <section className='p-4'>
-//             <Title title="Centers" />
-
-//             <div
-//                 className={`
-//                     fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4
-//                     transition-opacity duration-300 ease-in-out
-//                     ${showModalAddCenter ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
-//                 `}
-//             >
-//                 <div
-//                     className={`
-//                     w-full max-w-2xl dark:border dark:border-gray-700 bg-white dark:bg-black rounded-lg shadow-md p-6 relative
-//                     transform transition-transform duration-300 ease-in-out
-//                     ${showModalAddCenter ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
-//                     `}
-//                 >
-//                     <IoClose
-//                         className="absolute top-3 text-red-600 right-3 text-2xl cursor-pointer"
-//                         onClick={toggleShowModalAddCenter}
-//                     />
-
-//                     <Input label="Center Name" placeholder="Enter center name" />
-
-//                     <div className="mt-6 space-y-3 dark:text-white">
-//                         <div className="flex items-center gap-2 ">
-//                             <input type="checkbox" name="grade1" id="grade1" />
-//                             <label htmlFor="grade1">Grade 1</label>
-//                         </div>
-
-//                         <div className="flex items-center gap-2">
-//                             <input type="checkbox" name="grade2" id="grade2" />
-//                             <label htmlFor="grade2">Grade 2</label>
-//                         </div>
-
-//                         <div className="flex items-center gap-2">
-//                             <input type="checkbox" name="grade3" id="grade3" />
-//                             <label htmlFor="grade3">Grade 3</label>
-//                         </div>
-//                     </div>
-
-//                     <div className="text-center">
-//                         <Button size="lg" variant="default" className="w-1/2 my-8">
-//                             <PiPlusCircleBold /> Add Center
-//                         </Button>
-//                     </div>
-//                 </div>
-//             </div>
-
-//             <div
-//                 className={`
-//                     fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4
-//                     transition-opacity duration-300 ease-in-out
-//                     ${showModalAddSchedule ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
-//                 `}
-//             >
-//                 <div
-//                     className={`
-//                     w-full max-w-2xl dark:border dark:border-gray-700 bg-white dark:bg-black rounded-lg shadow-md p-6 relative
-//                     transform transition-transform duration-300 ease-in-out
-//                     ${showModalAddSchedule ? 'scale-100 opacity-100' : 'scale-95 opacity-0'}
-//                     `}
-//                 >
-//                     <IoClose
-//                         className="absolute top-3 text-red-600 right-3 text-2xl cursor-pointer"
-//                         onClick={toggleShowModalAddSchedule}
-//                     />
-
-//                     <p className='title text-2xl 2xl:text-3xl font-bold ml-6 my-4 text-black dark:text-white border-b-2 border-primary w-fit pb-2'>
-//                         Add Schedule For Center <span className='text-primary'>AIM</span>
-//                     </p>
-
-//                     <Input label="Subject" placeholder="Enter subject" />
-//                     <Input label="Day" placeholder="Enter day" />
-//                     <Input label="Time" placeholder="Enter time" />
-
-//                     <div className="text-center">
-//                         <Button size="lg" variant="default" className="w-1/2 my-8">
-//                             <PiPlusCircleBold /> Add Schedule
-//                         </Button>
-//                     </div>
-//                 </div>
-//             </div>
-
-
-//             <div className='sm:flex sm:items-center sm:justify-evenly w-full mb-6 gap-2 '>
-//                 <div className='sm:w-2/3'>
-//                     <Input
-//                         placeholder="Enter center name"
-//                         className="bg-white"
-//                     />
-//                 </div>
-
-//                 <div className='sm:w-1/4 w-1/2 m-auto mt-2'>
-//                     <Button
-//                         variant="default"
-//                         size="lg"
-//                         className="gap-2 w-full"
-//                         onClick={toggleShowModalAddCenter}
-//                     >
-//                         <PiPlusCircleBold /> Add Center
-//                     </Button>
-//                 </div>
-//             </div>
-
-
-//             <div className='grid lg:grid-cols-3 sm:grid-cols-2 gap-6 grid-cols-1'>
-//                         {centers.map((center, index) => (
-//                 <div className="card my-3 bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-gray-700 rounded-lg">
-//                     <div className="centerInfo p-3">
-//                         <h2 className='text-lg font-bold'>{center.name}</h2>
-//                     </div>
-
-//                     <div className="centerSchedules mt-6">
-//                             <div className="grade border-t" key={index}>
-//                                 <div
-//                                     className="p-3 flex justify-between items-center border-b cursor-pointer"
-//                                     // onClick={() => toggleGrade(center.name)}
-//                                 >
-//                                     <span className=" rounded-sm p-1 px-2">
-//                                         {/* {center.name} */}
-//                                         grade 1
-//                                     </span>
-
-//                                     <span className="text-sm text-gray-700 dark:text-gray-300">
-//                                         {center.name ? <FaChevronUp /> : <FaChevronDown />}
-//                                     </span>
-//                                 </div>
-
-//                                 <div className="p-3">
-//                                     <Button
-//                                         variant='default'
-//                                         size='lg'
-//                                         className="w-full gap-2"
-//                                         onClick={toggleShowModalAddSchedule}
-//                                     >
-//                                         <PiPlusCircleBold /> Add Schedule
-//                                     </Button>
-//                                 </div>
-
-//                                 {/* {center.name && (
-//                                     <div className="px-3 pb-3">
-//                                         <table className="w-full mt-2 text-sm">
-//                                             <thead>
-//                                                 <tr className="text-left border-b border-gray-300 dark:border-gray-700">
-//                                                     <th className="py-1">Day</th>
-//                                                     <th className="py-1">Time</th>
-//                                                     <th className="py-1">Subject</th>
-//                                                 </tr>
-//                                             </thead>
-//                                             <tbody>
-//                                                 {grade.schedules && grade.schedules.length > 0 ? (
-//                                                     grade.schedules.map((lesson, i) => (
-//                                                         <tr key={i} className="border-b border-gray-100 dark:border-gray-700">
-//                                                             <td className="py-1">{lesson.day}</td>
-//                                                             <td className="py-1">{lesson.time}</td>
-//                                                             <td className="py-1">{lesson.subject}</td>
-//                                                         </tr>
-//                                                     ))
-//                                                 ) : (
-//                                                     <tr>
-//                                                         <td colSpan="3" className="text-gray-500 py-2 italic">
-//                                                             No lessons added yet.
-//                                                         </td>
-//                                                     </tr>
-//                                                 )}
-//                                             </tbody>
-//                                         </table>
-//                                     </div>
-//                                 )} */}
-//                             </div>
-//                     </div>
-//                 </div>
-
-//             ))}
-//             </div>
-//         </section>
-
-
-//     );
-
-// }
-// export default Centers
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { PiPlusCircleBold } from "react-icons/pi";
@@ -784,8 +494,8 @@ const Centers = () => {
                 </div>
 
                 {/* شريط البحث وزر فتح مودال إضافة السنتر */}
-                <div className="sm:flex sm:items-center sm:justify-evenly w-full mb-6 gap-2">
-                    <div className="sm:w-2/3">
+                <div className={`sm:flex ${centers.length > 0 ? '' : 'justify-start w-1/4'} sm:items-center w-full mb-6 gap-2`}>
+                    {centers.length > 0 ? <div className="sm:w-2/3">
                         <Input
                             placeholder="ادخل اسم السنتر للبحث"
                             className="bg-white"
@@ -794,7 +504,9 @@ const Centers = () => {
                         />
 
                     </div>
-                    <div className="sm:w-1/4 w-1/2 m-auto mt-2">
+                        :
+                        ''}
+                    <div className={`${centers.length > 0 ? 'sm:w-1/4' : 'sm:w-1/2'}  w-1/2 m-auto mt-2`}>
                         <Button
                             variant="default"
                             size="lg"
@@ -807,7 +519,7 @@ const Centers = () => {
                 </div>
 
                 {/* قائمة السنتر */}
-                <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 items-start">
+                <div className={`${centers.length > 0 ? 'grid' : ''} lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 items-start`}>
 
                     {centers.length > 0 ? centers.map((center, index) => (
                         <div key={index} className="card my-3 bg-white dark:bg-gray-900 text-black dark:text-white border border-gray-200 dark:border-gray-700 rounded-lg">
@@ -910,9 +622,7 @@ const Centers = () => {
                             </div>
                         </div>
                     )) : (
-                        <div className="alert alert-danger py-2 fw-bolder text-center">
-                            لا توجد سناتر متاحة
-                        </div>
+                        <p className="text-red-500 text-center my-3 text-xl"> لا يوجد  سناتر متاحة</p>
                     )}
                 </div>
             </section>}
