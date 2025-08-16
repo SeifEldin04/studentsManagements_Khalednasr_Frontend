@@ -42,7 +42,7 @@ const Layout = () => {
         <main
           className={`
             flex-1 pt-16 min-h-screen transition-all bg-gray-100 dark:bg-black
-            
+            ${isSidebarOpen ? 'lg:ml-64' : 'xl:ml-20'}
           `}
         >
           <Outlet />

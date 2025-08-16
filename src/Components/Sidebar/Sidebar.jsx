@@ -39,7 +39,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 transition-all duration-300 ease-in-out
                 border-r ${isSidebarOpen ? 'border-gray-200 dark:border-gray-200' : 'dark:border-0'} 
                 bg-primary text-white
-                ${isSidebarOpen ? 'block w-64' : 'hidden'}
+                ${isSidebarOpen ? 'block w-64' : 'hidden w-20'}
                 xl:block
                 h-screen
             `}
