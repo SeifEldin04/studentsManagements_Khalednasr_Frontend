@@ -522,7 +522,7 @@ const Attendance = () => {
                                     className={`py-2 px-4 rounded text-white font-semibold bg-green-600`}
                                     onClick={sortStudentsAlphabetically}
                                 >
-                                    ترتيب أبجدي {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
+                                    ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
                                 </button>
                             </div>
                         </div>

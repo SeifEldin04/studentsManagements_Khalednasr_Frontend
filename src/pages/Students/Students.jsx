@@ -617,7 +617,7 @@ const Students = () => {
 
                     <div className={`sortBtn w-full flex justify-center items-center`}>
                         <Button className='btn btn-success m-auto sm:w-1/4 w-3/4' onClick={sortStudentsAlphabetically}>
-                            ترتيب أبجدي {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
+                            ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
                         </Button>
                     </div>
 

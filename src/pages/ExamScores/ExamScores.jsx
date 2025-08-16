@@ -1125,13 +1125,13 @@ const ExamScores = () => {
                                     className={`py-2 px-4 rounded text-white font-semibold ${sortType === 'name' ? 'bg-green-600' : 'bg-gray-500'}`}
                                     onClick={() => toggleSortType('name')}
                                 >
-                                    ترتيب أبجدي {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
+                                    ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
                                 </button>
                                 <button
                                     className={`py-2 px-4 rounded text-white font-semibold ${sortType === 'percentage' ? 'bg-green-600' : 'bg-gray-500'}`}
                                     onClick={() => toggleSortType('percentage')}
                                 >
-                                    ترتيب حسب النسبة المئوية {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
+                                    ترتيب أبجدي حسب النسبة المئوية {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
                                 </button>
                             </div>
                         </div>
