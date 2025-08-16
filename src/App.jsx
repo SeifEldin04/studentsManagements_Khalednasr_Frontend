@@ -9,7 +9,7 @@ import Signup from './pages/Signup/Signup'
 import Login from './pages/Login/Login'
 import { UserContext } from './Context/UserContext.jsx';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx';
-import Students from './pages/Students/students.jsx';
+import Students from './pages/Students/Students.jsx';
 import StudentsDegrees from './pages/StudentsDegrees/StudentsDegrees.jsx';
 import ExamScores from './pages/ExamScores/ExamScores.jsx';
 import Attendance from './pages/Attendance/Attendance.jsx';
