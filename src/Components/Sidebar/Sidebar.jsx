@@ -37,10 +37,10 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             className={`
                 fixed top-0 left-0 z-40
                 transition-all duration-300 ease-in-out
-                border-r ${isSidebarOpen ? 'border-gray-200 dark:border-gray-200' : 'dark:border-0'} bg-primary text-white
-                ${isSidebarOpen ? 'w-64' : 'w-20'}
-                ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-                3xl:translate-x-0
+                border-r ${isSidebarOpen ? 'border-gray-200 dark:border-gray-200' : 'dark:border-0'} 
+                bg-primary text-white
+                ${isSidebarOpen ? 'block w-64' : 'hidden'}
+                xl:block
                 h-screen
             `}
         >
