@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+:root {
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; */
+  height: 100%;
+
+}
+
+/* :root {
+  --background_color: white;
+  --body_color: black;
+  --link_color: navy;
+
+  --primary_color: #fb923c;
+  --secondary_color: #DF9755;
+  --thirdly_color: #E7D283;
+
+  --box_shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+[data-theme='dark'] {
+  --background_color: #05070c;
+  --body_color: white;
+  --link_color: cyan;
+  --box_shadow: rgba(300, 300, 300, 0.3) 0px 7px 29px 0px;
+} */
+
+* {
+  @apply transition-colors duration-200
+}
+
+/* 
+body {
+  background-color: var(--background_color);
+  color: var(--body_color);
+} */
+
+/* @layer components {
+  .navbar_link:hover {
+    color: #ff8901;
+    transition: all 0.1s;
+  }
+
+  .navbar_link::after {
+    position: absolute;
+    content: "";
+    background-color: #ff8901;
+    height: 2px;
+    width: 100%;
+    bottom: -5px;
+    left: 0%;
+    scale: 0;
+    transition: all 0.3s;
+  }
+
+  .navbar_link:hover::after {
+    scale: 1;
+  }
+
+  .navbar_link_logout {
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: all 0.3s;
+  }
+
+  .navbar_link_logout:hover {
+    scale: 1.025;
+    box-shadow: var(--box_shadow);
+  }
+} */
+
+/* Navbar default state (hidden) */
+/* .navbar {
+  background-color: var(--background_color);
+  color: var(--body_color);
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+} */
+
+.afterLogo::after {
+  content: "";
+  background-color: OKLAB(0.685 -0.0912435 -0.142252 / 0.75);
+  width: 105px;
+  height: 3px;
+  position: absolute;
+  left: 0px;
+  top: 28px;
+  border-radius: 3px;
+}
+
+/* Navbar visible state */
+/* .navbar-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+} */
+
+/* Navbar hidden state */
+/* .navbar-hidden {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+} */
+
+
+/* تصميم المسار (Track) */
+.scroll-indicator-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* يغطي عرض الصفحة بالكامل */
+  height: 3px;
+  /* ارتفاع المسار */
+  background-color: var(--thirdly_color);
+  /* لون المسار */
+  z-index: 1000;
+  /* يظهر فوق كل العناصر */
+}
+
+/* تصميم الشريط (Progress Bar) */
+.scroll-indicator {
+  height: 100%;
+  /* نفس ارتفاع المسار */
+  background-color: var(--primary_color);
+  /* لون الشريط */
+  width: 0%;
+  /* يبدأ من الصفر ويتم تمديده */
+  transition: width 0.1s ease-out;
+  /* تأثير سلس أثناء التمدد */
+}
+
+/* Home Page */
+header {
+  height: 100vh;
+}
+
+.header_backgroundContent {
+  /* background-color: var(--background_color); */
+  color: var(--body_color);
+  /* transform: translateY(50%); */
+}
+
+/* .custom-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diamond1 {
+  width: 15px;
+  height: 15px;
+  background-color: oklab(0.685 -0.0912435 -0.142252 / 0.75);
+  transform: rotate(45deg);
+}
+
+.diamond2 {
+  width: 15px;
+  height: 15px;
+  background-color: oklab(0.685 -0.0912435 -0.142252 / 0.15);
+  transform: rotate(45deg);
+}
+
+.line {
+  width: 400px;
+  height: 4px;
+  background: linear-gradient(
+    to right,
+    oklab(0.685 -0.0912435 -0.142252 / 0.75),
+    oklab(0.685 -0.0912435 -0.142252 / 0.1)
+  );
+} */
+
+.custom-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diamond1 {
+  width: 15px;
+  height: 15px;
+  background-color: oklab(0.685 -0.0912435 -0.142252 / 0.75);
+  transform: rotate(45deg);
+}
+
+.diamond2 {
+  width: 15px;
+  height: 15px;
+  background-color: oklab(0.685 -0.0912435 -0.142252 / 0.15);
+  transform: rotate(45deg);
+}
+
+.line {
+  width: 400px;
+  height: 4px;
+  background: linear-gradient(to right,
+      oklab(0.685 -0.0912435 -0.142252 / 0.75),
+      oklab(0.685 -0.0912435 -0.142252 / 0.1));
+}
+
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* تنسيق الأسهم المتحركة */
+.arrows {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  border-right: 3px solid OKLAB(0.685 -0.0912435 -0.142252 / 0.75);
+  border-bottom: 3px solid OKLAB(0.685 -0.0912435 -0.142252 / 0.75);
+  transform: rotate(45deg);
+  margin: 5px 0;
+  animation: bounce 2s infinite;
+}
+
+.arrow-1 {
+  animation-delay: 0s;
+}
+
+.arrow-2 {
+  animation-delay: 0.2s;
+}
+
+.arrow-3 {
+  animation-delay: 0.4s;
+}
+
+.arrow-4 {
+  animation-delay: 0.6s;
+}
+
+@keyframes bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  40% {
+    transform: translateY(-20px) rotate(45deg);
+  }
+
+  60% {
+    transform: translateY(-10px) rotate(45deg);
+  }
+}
+
+
+/* title */
+/* .title{
+  position: relative;
+}
+
+.title::before{
+  content: "";
+  background-color: OKLAB(0.685 -0.0912435 -0.142252 / 0.9);
+  width: 47px;
+  height: 2px;
+  position: absolute;
+  left: -55px;
+  top: 50%;
+}
+
+.title::after{
+  content: "";
+  background-color: OKLAB(0.685 -0.0912435 -0.142252 / 0.9);
+  width: 47px;
+  height: 2px;
+  position: absolute;
+  right: 1565px;
+  top: 50%;
+} */
+
+.select {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid black;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.select.selected {
+  background-color: green;
+  border: 1px solid white;
+}
+
+.selected-row {
+  background-color: #e6f3e6; /* Light green background for selected rows */
+}
