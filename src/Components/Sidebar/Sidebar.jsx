@@ -40,7 +40,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 border-r ${isSidebarOpen ? 'border-gray-200 dark:border-gray-200' : 'dark:border-0'} bg-primary text-white
                 ${isSidebarOpen ? 'w-64' : 'w-20'}
                 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-                2xl:translate-x-0
+                3xl:translate-x-0
                 h-screen
             `}
         >
