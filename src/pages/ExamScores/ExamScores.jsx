@@ -151,11 +151,15 @@ const ExamScores = () => {
                     ? a.name.localeCompare(b.name, 'ar')
                     : b.name.localeCompare(a.name, 'ar');
             } else if (type === 'percentage') {
-                const percentageA = parseFloat(calculatePercentage(examScores[a.id] || {}));
-                const percentageB = parseFloat(calculatePercentage(examScores[b.id] || {}));
+                // const percentageA = parseFloat(calculatePercentage(examScores[a.id] || {}));
+                // const percentageB = parseFloat(calculatePercentage(examScores[b.id] || {}));
+                // return order === 'asc'
+                //     ? percentageA - percentageB
+                //     : percentageB - percentageA;
+
                 return order === 'asc'
-                    ? percentageA - percentageB
-                    : percentageB - percentageA;
+                    ? a.percentage - b.percentage
+                    : b.percentage - a.percentage;
             }
             return 0;
         });
@@ -528,30 +532,30 @@ const ExamScores = () => {
     // };
 
     const handleScoreChange = (studentId, examNumber, scoreType, value, numberOfSessions) => {
-    // هنا نخزن القيمة زي ما هي من الـ input (string)
-    const scoreValue = value;  
+        // هنا نخزن القيمة زي ما هي من الـ input (string)
+        const scoreValue = value;
 
-    setExamScores(prevScores => {
-        const prevStudentScores = prevScores[studentId] || {};
+        setExamScores(prevScores => {
+            const prevStudentScores = prevScores[studentId] || {};
 
-        const updatedStudentScores = {
-            ...prevStudentScores,
-            [`exam${examNumber}${scoreType ? '_' + scoreType : ''}`]: scoreValue
-        };
+            const updatedStudentScores = {
+                ...prevStudentScores,
+                [`exam${examNumber}${scoreType ? '_' + scoreType : ''}`]: scoreValue
+            };
 
-        const { totalScore, totalMaxScore, percentage } = calculateTotals(updatedStudentScores, numberOfSessions);
+            const { totalScore, totalMaxScore, percentage } = calculateTotals(updatedStudentScores, numberOfSessions);
 
-        return {
-            ...prevScores,
-            [studentId]: {
-                ...updatedStudentScores,
-                totalScore,
-                totalMaxScore,
-                percentage
-            }
-        };
-    });
-};
+            return {
+                ...prevScores,
+                [studentId]: {
+                    ...updatedStudentScores,
+                    totalScore,
+                    totalMaxScore,
+                    percentage
+                }
+            };
+        });
+    };
 
 
 
@@ -587,26 +591,26 @@ const ExamScores = () => {
     // };
 
     const calculateTotals = (studentScores, numberOfSessions) => {
-    let totalScore = 0;
-    let totalMaxScore = 0;
+        let totalScore = 0;
+        let totalMaxScore = 0;
 
-    for (let i = 1; i <= numberOfSessions; i++) {
-        const score = studentScores[`exam${i}`];
-        const maxScore = studentScores[`exam${i}_max`];
+        for (let i = 1; i <= numberOfSessions; i++) {
+            const score = studentScores[`exam${i}`];
+            const maxScore = studentScores[`exam${i}_max`];
 
-        if (score !== "" && score !== undefined && !isNaN(Number(score))) {
-            totalScore += Number(score);
+            if (score !== "" && score !== undefined && !isNaN(Number(score))) {
+                totalScore += Number(score);
+            }
+
+            if (maxScore !== "" && maxScore !== undefined && !isNaN(Number(maxScore))) {
+                totalMaxScore += Number(maxScore);
+            }
         }
 
-        if (maxScore !== "" && maxScore !== undefined && !isNaN(Number(maxScore))) {
-            totalMaxScore += Number(maxScore);
-        }
-    }
+        const percentage = totalMaxScore > 0 ? ((totalScore / totalMaxScore) * 100).toFixed(2) : 0;
 
-    const percentage = totalMaxScore > 0 ? ((totalScore / totalMaxScore) * 100).toFixed(2) : 0;
-
-    return { totalScore, totalMaxScore, percentage };
-};
+        return { totalScore, totalMaxScore, percentage };
+    };
 
 
 
