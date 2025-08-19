@@ -522,98 +522,97 @@ const Students = () => {
                     </Button>
                 </div>
 
+                {/* search , reset search button*/}
+                <div className="search w-full">
+                    {/* Search Inputs */}
+                    <div className="">
+                        <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <Input type="text" className='bg-white' placeholder='بحث عبر الاسم'
+                                    onChange={handleSearch(setSearchName)}
+                                    value={searchName}
+                                />
+                            </div>
+
+                            <div className="w-1/2">
+                                <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
+                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
+                        "placeholder-gray-400",
+                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
+                                    onChange={handleSearch(setSearchGrade)}
+                                    value={searchGrade}>
+
+                                    <option value=""> أختر الصف الدراسي</option>
+
+                                    <option value="الصف الاول الثانوي"> الصف الاول الثانوي </option>
+
+                                    <option value="الصف الثاني الثانوي"> الصف الثاني الثانوي </option>
+
+                                    <option value="الصف الثاني الثانوي علمي"> الصف الثاني الثانوي علمي</option>
+
+                                    <option value="الصف الثالث الثانوي"> الصف الثالث الثانوي</option>
+
+                                    <option value="احصاء"> احصاء </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className='flex gap-4'>
+                            <div className='w-1/2'>
+                                <Input type="text" className='bg-white' placeholder='بحث عبر المدرسة'
+                                    onChange={(e) => setSearchSchool(e.target.value)}
+                                    value={searchSchool}
+                                />
+                            </div>
+
+                            <div className='w-1/2'>
+                                <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
+                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
+                        "placeholder-gray-400",
+                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
+                                    onChange={handleSearch(setSearchCenter)}
+                                    value={searchCenter}>
+
+                                    <option value="">
+                                        اختر السنتر
+                                    </option>
+
+                                    {centers.map((center => (
+                                        <option key={center.id} value={center.name}>
+                                            {center.name}
+                                        </option>
+                                    )))}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-4">
+                            <div className="w-1/2">
+                                <Input type="text" className='bg-white' placeholder='بحث عبر تليفون الطالب'
+                                    onChange={(e) => setSearchPhone(e.target.value)}
+                                    value={searchPhone}
+                                />
+                            </div>
+
+                            <div className="w-1/2">
+                                <Input type="text" className='bg-white' placeholder='بحث عبر تليفون ولي الامر'
+                                    onChange={(e) => setSearchGuardianPhone(e.target.value)}
+                                    value={searchGuardianPhone}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* delete search button */}
+                    <div className='flex justify-center items-center my-4'>
+                        <Button className='sm:w-1/4 w-3/4' onClick={clearSearch}> مسح البحث </Button>
+                    </div>
+                </div>
 
                 {/* utilities */}
                 {students.length > 0 ?
 
                     <>
-
-                        {/* search , reset search button*/}
-                        <div className="search w-full">
-                            {/* Search Inputs */}
-                            <div className="">
-                                <div className="flex gap-4">
-                                    <div className="w-1/2">
-                                        <Input type="text" className='bg-white' placeholder='بحث عبر الاسم'
-                                            onChange={handleSearch(setSearchName)}
-                                            value={searchName}
-                                        />
-                                    </div>
-
-                                    <div className="w-1/2">
-                                        <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
-                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
-                        "placeholder-gray-400",
-                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
-                                            onChange={handleSearch(setSearchGrade)}
-                                            value={searchGrade}>
-
-                                            <option value=""> أختر الصف الدراسي</option>
-
-                                            <option value="الصف الاول الثانوي"> الصف الاول الثانوي </option>
-
-                                            <option value="الصف الثاني الثانوي"> الصف الثاني الثانوي </option>
-
-                                            <option value="الصف الثاني الثانوي علمي"> الصف الثاني الثانوي علمي</option>
-
-                                            <option value="الصف الثالث الثانوي"> الصف الثالث الثانوي</option>
-
-                                            <option value="احصاء"> احصاء </option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className='flex gap-4'>
-                                    <div className='w-1/2'>
-                                        <Input type="text" className='bg-white' placeholder='بحث عبر المدرسة'
-                                            onChange={(e) => setSearchSchool(e.target.value)}
-                                            value={searchSchool}
-                                        />
-                                    </div>
-
-                                    <div className='w-1/2'>
-                                        <select id="" className='block w-full rounded-md p-2 my-2 bg-white dark:bg-gray-900 dark:placeholder:text-gray-300 dark:text-white border-gray-300 shadow-sm",
-                        "focus:border-primary focus:ring focus:ring-primary focus:outline-none focus:ring-opacity-50",
-                        "placeholder-gray-400",
-                        "disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed'
-                                            onChange={handleSearch(setSearchCenter)}
-                                            value={searchCenter}>
-
-                                            <option value="">
-                                                اختر السنتر
-                                            </option>
-
-                                            {centers.map((center => (
-                                                <option key={center.id} value={center.name}>
-                                                    {center.name}
-                                                </option>
-                                            )))}
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4">
-                                    <div className="w-1/2">
-                                        <Input type="text" className='bg-white' placeholder='بحث عبر تليفون الطالب'
-                                            onChange={(e) => setSearchPhone(e.target.value)}
-                                            value={searchPhone}
-                                        />
-                                    </div>
-
-                                    <div className="w-1/2">
-                                        <Input type="text" className='bg-white' placeholder='بحث عبر تليفون ولي الامر'
-                                            onChange={(e) => setSearchGuardianPhone(e.target.value)}
-                                            value={searchGuardianPhone}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* delete search button */}
-                            <div className='flex justify-center items-center my-4'>
-                                <Button className='sm:w-1/4 w-3/4' onClick={clearSearch}> مسح البحث </Button>
-                            </div>
-                        </div>
 
                         {/* utilities */}
                         <div className='utilities'>

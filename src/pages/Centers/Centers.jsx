@@ -367,6 +367,30 @@ const Centers = () => {
             <section className="sm:p-4">
                 <Title title="Centers" />
 
+                {/* شريط البحث وزر فتح مودال إضافة السنتر */}
+                <div className={`sm:flex sm:justify-evenly sm:items-center w-full mb-6 gap-2`}>
+                    <div className="sm:w-2/3">
+                        <Input
+                            placeholder="ادخل اسم السنتر للبحث"
+                            className="bg-white"
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                        />
+
+                    </div>
+                    
+                    <div className={`sm:w-1/4 w-1/2 m-auto mt-2`}>
+                        <Button
+                            variant="default"
+                            size="lg"
+                            className="gap-2 w-full"
+                            onClick={toggleShowModalAddCenter}
+                        >
+                            <PiPlusCircleBold /> اضافة سنتر
+                        </Button>
+                    </div>
+                </div>
+
                 {/* مودال إضافة/تعديل السنتر */}
                 <div
                     onClick={() => {
@@ -490,31 +514,6 @@ const Centers = () => {
                                 {isLoading ? <BiLoader className='text-2xl text-white animate-spin mr-1' /> : <PiPlusCircleBold className='mr-1' />} {editCenterSchedule ? 'تحديث الحصة' : 'إضافة حصة'}
                             </Button>
                         </div>
-                    </div>
-                </div>
-
-                {/* شريط البحث وزر فتح مودال إضافة السنتر */}
-                <div className={`sm:flex ${centers.length > 0 ? '' : 'justify-start w-1/4'} sm:items-center w-full mb-6 gap-2`}>
-                    {centers.length > 0 ? <div className="sm:w-2/3">
-                        <Input
-                            placeholder="ادخل اسم السنتر للبحث"
-                            className="bg-white"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                        />
-
-                    </div>
-                        :
-                        ''}
-                    <div className={`${centers.length > 0 ? 'sm:w-1/4' : 'sm:w-1/2'}  w-1/2 m-auto mt-2`}>
-                        <Button
-                            variant="default"
-                            size="lg"
-                            className="gap-2 w-full"
-                            onClick={toggleShowModalAddCenter}
-                        >
-                            <PiPlusCircleBold /> اضافة سنتر
-                        </Button>
                     </div>
                 </div>
 

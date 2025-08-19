@@ -498,64 +498,116 @@ const ExamScores = () => {
     //     return { totalScore, totalMaxScore, percentage };
     // };
 
+    // const handleScoreChange = (studentId, examNumber, scoreType, value, numberOfSessions) => {
+    //     // لو المستخدم مسح الخانة → خزنها كـ string فاضية
+    //     const scoreValue = value === "" ? "" : isNaN(value) ? value : Number(value);
+
+    //     setExamScores(prevScores => {
+    //         const prevStudentScores = prevScores[studentId] || {};
+
+    //         // تحديث القيمة الجديدة
+    //         const updatedStudentScores = {
+    //             ...prevStudentScores,
+    //             [`exam${examNumber}${scoreType ? '_' + scoreType : ''}`]: scoreValue
+    //         };
+
+    //         // حساب المجموع والنسبة
+    //         const { totalScore, totalMaxScore, percentage } = calculateTotals(updatedStudentScores, numberOfSessions);
+
+    //         // تحديث حالة الطالب بالكامل
+    //         return {
+    //             ...prevScores,
+    //             [studentId]: {
+    //                 ...updatedStudentScores,
+    //                 totalScore,
+    //                 totalMaxScore,
+    //                 percentage
+    //             }
+    //         };
+    //     });
+    // };
+
     const handleScoreChange = (studentId, examNumber, scoreType, value, numberOfSessions) => {
-        const scoreValue = isNaN(value) ? value : Number(value); // السماح بأي قيمة
+    // هنا نخزن القيمة زي ما هي من الـ input (string)
+    const scoreValue = value;  
 
-        setExamScores(prevScores => {
-            const prevStudentScores = prevScores[studentId] || {};
+    setExamScores(prevScores => {
+        const prevStudentScores = prevScores[studentId] || {};
 
-            // تحديث القيمة الجديدة
-            const updatedStudentScores = {
-                ...prevStudentScores,
-                [`exam${examNumber}${scoreType ? '_' + scoreType : ''}`]: scoreValue
-            };
+        const updatedStudentScores = {
+            ...prevStudentScores,
+            [`exam${examNumber}${scoreType ? '_' + scoreType : ''}`]: scoreValue
+        };
 
-            // حساب المجموع والنسبة
-            const { totalScore, totalMaxScore, percentage } = calculateTotals(updatedStudentScores, numberOfSessions);
+        const { totalScore, totalMaxScore, percentage } = calculateTotals(updatedStudentScores, numberOfSessions);
 
-            // تحديث حالة الطالب بالكامل
-            return {
-                ...prevScores,
-                [studentId]: {
-                    ...updatedStudentScores,
-                    totalScore,
-                    totalMaxScore,
-                    percentage
-                }
-            };
-        });
-    };
+        return {
+            ...prevScores,
+            [studentId]: {
+                ...updatedStudentScores,
+                totalScore,
+                totalMaxScore,
+                percentage
+            }
+        };
+    });
+};
+
+
+
+    // const calculateTotals = (studentScores, numberOfSessions) => {
+    //     let totalScore = 0;
+    //     let totalMaxScore = 0;
+
+    //     for (let i = 1; i <= numberOfSessions; i++) {
+    //         const score = studentScores[`exam${i}`];
+    //         const maxScore = studentScores[`exam${i}_max`];
+
+    //         if (score !== undefined && maxScore !== undefined) {
+    //             totalScore += (typeof score === 'string' && isNaN(score)) ? 0 : Number(score) || 0;
+    //             totalMaxScore += Number(maxScore) || 0;
+    //         }
+    //     }
+
+    //     const percentage = totalMaxScore > 0 ? (totalScore / totalMaxScore * 100).toFixed(2) : 0;
+
+    //     return { totalScore, totalMaxScore, percentage };
+    // };
+
+    // const calculatePercentage = (scores) => {
+    //     let totalScore = 0;
+    //     let totalMaxScore = 0;
+    //     for (let i = 1; i <= numberOfSessions; i++) {
+    //         const score = parseFloat(scores[`exam${i}`]) || 0;
+    //         const maxScore = parseFloat(scores[`exam${i}_max`]) || 0;
+    //         totalScore += score;
+    //         totalMaxScore += maxScore;
+    //     }
+    //     return totalMaxScore > 0 ? (totalScore / totalMaxScore * 100).toFixed(2) : 0;
+    // };
 
     const calculateTotals = (studentScores, numberOfSessions) => {
-        let totalScore = 0;
-        let totalMaxScore = 0;
+    let totalScore = 0;
+    let totalMaxScore = 0;
 
-        for (let i = 1; i <= numberOfSessions; i++) {
-            const score = studentScores[`exam${i}`];
-            const maxScore = studentScores[`exam${i}_max`];
+    for (let i = 1; i <= numberOfSessions; i++) {
+        const score = studentScores[`exam${i}`];
+        const maxScore = studentScores[`exam${i}_max`];
 
-            if (score !== undefined && maxScore !== undefined) {
-                totalScore += (typeof score === 'string' && isNaN(score)) ? 0 : Number(score) || 0;
-                totalMaxScore += Number(maxScore) || 0;
-            }
+        if (score !== "" && score !== undefined && !isNaN(Number(score))) {
+            totalScore += Number(score);
         }
 
-        const percentage = totalMaxScore > 0 ? (totalScore / totalMaxScore * 100).toFixed(2) : 0;
-
-        return { totalScore, totalMaxScore, percentage };
-    };
-
-    const calculatePercentage = (scores) => {
-        let totalScore = 0;
-        let totalMaxScore = 0;
-        for (let i = 1; i <= numberOfSessions; i++) {
-            const score = parseFloat(scores[`exam${i}`]) || 0;
-            const maxScore = parseFloat(scores[`exam${i}_max`]) || 0;
-            totalScore += score;
-            totalMaxScore += maxScore;
+        if (maxScore !== "" && maxScore !== undefined && !isNaN(Number(maxScore))) {
+            totalMaxScore += Number(maxScore);
         }
-        return totalMaxScore > 0 ? (totalScore / totalMaxScore * 100).toFixed(2) : 0;
-    };
+    }
+
+    const percentage = totalMaxScore > 0 ? ((totalScore / totalMaxScore) * 100).toFixed(2) : 0;
+
+    return { totalScore, totalMaxScore, percentage };
+};
+
 
 
 
@@ -1244,7 +1296,7 @@ const ExamScores = () => {
                                                     <input
                                                         type="text"
                                                         className={`form-input w-[50px] px-2 py-1 bg-gray-100 ${selectedRows.includes(student.id) ? 'bg-gray-400 text-white' : ''}`}
-                                                        value={examScores[student.id]?.[`exam${index + 1}`] || ''}
+                                                        value={examScores[student.id]?.[`exam${index + 1}`] ?? ''}
                                                         onChange={(e) => handleScoreChange(student.id, index + 1, '', e.target.value)}
                                                         onKeyDown={(e) => handleKeyDown(e, studentIndex, index + 1, false)}
                                                         ref={el => inputRefs.current[studentIndex * numberOfSessions * 2 + index * 2] = el}
@@ -1254,7 +1306,7 @@ const ExamScores = () => {
                                                     <input
                                                         type="text"
                                                         className={`form-input w-[50px] px-2 py-1 bg-gray-100 ${selectedRows.includes(student.id) ? 'bg-gray-400 text-white' : ''}`}
-                                                        value={examScores[student.id]?.[`exam${index + 1}_max`] || ''}
+                                                        value={examScores[student.id]?.[`exam${index + 1}_max`] ?? ''}
                                                         onChange={(e) => handleScoreChange(student.id, index + 1, 'max', e.target.value)}
                                                         onKeyDown={(e) => handleKeyDown(e, studentIndex, index + 1, true)}
                                                         ref={el => inputRefs.current[studentIndex * numberOfSessions * 2 + index * 2 + 1] = el}
