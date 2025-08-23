@@ -612,6 +612,26 @@ const ExamScores = () => {
         return { totalScore, totalMaxScore, percentage };
     };
 
+    // 4. تعديل دالة calculatePercentage لتستخدم البيانات الصحيحة
+    const calculatePercentage = (scores) => {
+        // إذا كانت البيانات تأتي من قاعدة البيانات مع حقل percentage محسوب
+        if (scores.percentage !== undefined && scores.percentage !== null) {
+            return parseFloat(scores.percentage).toFixed(2);
+        }
+
+        // وإلا احسبها محلياً
+        let totalScore = 0;
+        let totalMaxScore = 0;
+
+        for (let i = 1; i <= numberOfSessions; i++) {
+            const score = parseFloat(scores[`exam${i}`]) || 0;
+            const maxScore = parseFloat(scores[`exam${i}_max`]) || 0;
+            totalScore += score;
+            totalMaxScore += maxScore;
+        }
+
+        return totalMaxScore > 0 ? (totalScore / totalMaxScore * 100).toFixed(2) : 0;
+    };
 
 
 
@@ -638,28 +658,6 @@ const ExamScores = () => {
 
     //     return { totalScore, totalMaxScore, percentage };
     // };
-
-    // 4. تعديل دالة calculatePercentage لتستخدم البيانات الصحيحة
-    // const calculatePercentage = (scores) => {
-    //     // إذا كانت البيانات تأتي من قاعدة البيانات مع حقل percentage محسوب
-    //     if (scores.percentage !== undefined && scores.percentage !== null) {
-    //         return parseFloat(scores.percentage).toFixed(2);
-    //     }
-
-    //     // وإلا احسبها محلياً
-    //     let totalScore = 0;
-    //     let totalMaxScore = 0;
-
-    //     for (let i = 1; i <= numberOfSessions; i++) {
-    //         const score = parseFloat(scores[`exam${i}`]) || 0;
-    //         const maxScore = parseFloat(scores[`exam${i}_max`]) || 0;
-    //         totalScore += score;
-    //         totalMaxScore += maxScore;
-    //     }
-
-    //     return totalMaxScore > 0 ? (totalScore / totalMaxScore * 100).toFixed(2) : 0;
-    // };
-
 
 
     const handleExamScoresDeleteClick = async (student_id, center_id, grade, month) => {

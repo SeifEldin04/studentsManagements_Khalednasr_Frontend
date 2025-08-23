@@ -44,6 +44,9 @@ const Students = () => {
     const [searchGuardianPhone, setSearchGuardianPhone] = useState('');
     const [searchCenter, setSearchCenter] = useState('');
 
+    const [isSearchActive, setIsSearchActive] = useState(false);
+
+
     const [showModalAddStudent, setShowModalAddStudent] = useState(false);
 
     const [editStudent, setEditStudent] = useState(null);
@@ -616,26 +619,52 @@ const Students = () => {
 
                         {/* utilities */}
                         <div className='utilities'>
-                            <div className='my-3 w-full flex justify-center items-center'>
-                                <Button className='sm:w-1/4 w-3/4' onClick={handleSelectAll}>   تحديد الكل </Button>
-                            </div>
-
                             <div className={`sortBtn w-full flex justify-center items-center`}>
                                 <Button className='btn btn-success m-auto sm:w-1/4 w-3/4' onClick={sortStudentsAlphabetically}>
                                     ترتيب أبجدي حسب الأسم {sortOrder === 'asc' ? '(تصاعدي)' : '(تنازلي)'}
                                 </Button>
                             </div>
 
-                            {selectedRows.length > 0 && <div className="my-4 sm:w-1/2 w-3/4 py-4 m-auto bg-white dark:bg-gray-900 rounded-lg shadow-md">
-                                <div className='w-full flex justify-center items-center'>
-                                    <Button className='bg-red-600 hover:bg-red-700' onClick={handleDeselectAll}> الغاء التحديد </Button>
+                            <div className="container mx-auto mt-4 text-center flex justify-center items-center">
+                                <div>
+                                    {isSearchActive ? (
+                                        <span className="bg-black text-white rounded-md py-2 px-3">
+                                            عدد الطلاب المبحوث عنها : {students.length}
+                                        </span>
+                                    ) : (
+                                        <span className="bg-black text-white rounded-full py-2 px-3">
+                                            عدد الطلاب الكلي : {allStudents.length}
+                                        </span>
+                                    )}
                                 </div>
 
-                                <div className='mt-3 w-full flex justify-center items-center'>
-                                    <Button className='bg-red-600 hover:bg-red-700' onClick={handleDeleteSelected}> حذف الطلاب المحددين </Button>
-                                </div>
+                                {selectedRows.length === 0 && (
+                                    <button
+                                        className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-3"
+                                        onClick={handleSelectAll}
+                                    >
+                                        تحديد الكل
+                                    </button>
+                                )}
+
+                                {selectedRows.length > 0 && (
+                                    <>
+                                        <button
+                                            className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded ml-3"
+                                            onClick={handleSelectAll}
+                                        >
+                                            تحديد الكل
+                                        </button>
+
+                                        <button
+                                            className="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded ml-3"
+                                            onClick={handleDeselectAll}
+                                        >
+                                            إلغاء التحديد
+                                        </button>
+                                    </>
+                                )}
                             </div>
-                            }
                         </div>
 
                         {/* قائمة الطلاب */}
